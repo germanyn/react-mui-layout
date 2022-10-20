@@ -12,7 +12,7 @@ export function App() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppToolbar onMenuClick={() => setOpen(!open)}/>
-        <AppDrawer open={open}/>
+        <AppDrawer open={open} onClose={() => setOpen(false)}/>
         <AppMain open={open}>
           <Typography
             component="h2"

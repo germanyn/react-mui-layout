@@ -4,9 +4,10 @@ import { DRAWER_WIDTH } from "../constants";
 
 export interface AppDrawerProps {
   open?: boolean
+  onClose?: () => void
 }
 
-export function AppDrawer({ open }: AppDrawerProps) {
+export function AppDrawer({ open, onClose }: AppDrawerProps) {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.only('xs'))
   return (
@@ -18,6 +19,7 @@ export function AppDrawer({ open }: AppDrawerProps) {
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: { width: DRAWER_WIDTH, boxSizing: 'border-box' },
       }}
+      onClose={onClose}
     >
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
