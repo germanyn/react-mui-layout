@@ -1,14 +1,17 @@
-import { Box, CssBaseline, ThemeProvider, Typography } from "@mui/material";
+import { Box, CssBaseline, Typography } from "@mui/material";
+import { useState } from "react";
 import { AppDrawer } from "./components/AppDrawer";
 import { AppMain } from "./components/AppMain";
 import { AppToolbar } from "./components/AppToolbar";
 
 export function App() {
-  
+  const [open, setOpen] = useState(false)
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppToolbar/>
+      <AppToolbar
+        onMenuClick={() => setOpen(!open)}
+      />
       <AppDrawer/>
       <AppMain>
         <Typography
