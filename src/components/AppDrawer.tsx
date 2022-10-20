@@ -3,11 +3,15 @@ import HomeIcon from '@mui/icons-material/Home';
 
 const DRAWER_WIDTH = 240;
 
-export function AppDrawer() {
+export interface AppDrawerProps {
+  open?: boolean
+}
+
+export function AppDrawer({ open }: AppDrawerProps) {
   return (
     <Drawer
-      variant="permanent"
-      open
+      variant="persistent"
+      open={open}
       sx={{
         width: DRAWER_WIDTH,
         flexShrink: 0,

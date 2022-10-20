@@ -12,7 +12,9 @@ export function App() {
       <AppToolbar
         onMenuClick={() => setOpen(!open)}
       />
-      <AppDrawer/>
+      <AppDrawer
+        open={open}
+      />
       <AppMain>
         <Typography
           component="h2"
