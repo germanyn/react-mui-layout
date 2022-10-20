@@ -1,5 +1,7 @@
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
+import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded';
+import { Box, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import { DRAWER_WIDTH } from "../constants";
 
 export interface AppDrawerProps {
@@ -23,15 +25,23 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
     >
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
-        <List>
-          <ListItem disablePadding>
+        <List onClick={onClose}>
+          <ListItemButton component={NavLink} to='/'>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon/>
               </ListItemIcon>
               <ListItemText primary='Home' />
             </ListItemButton>
-          </ListItem>
+          </ListItemButton>
+          <ListItemButton component={NavLink} to='/about'>
+            <ListItemButton>
+              <ListItemIcon>
+                <QuestionMarkRoundedIcon/>
+              </ListItemIcon>
+              <ListItemText primary='About' />
+            </ListItemButton>
+          </ListItemButton>
         </List>
       </Box>
     </Drawer>
