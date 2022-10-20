@@ -1,4 +1,4 @@
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from "@mui/material";
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import { DRAWER_WIDTH } from "../constants";
 
@@ -7,9 +7,11 @@ export interface AppDrawerProps {
 }
 
 export function AppDrawer({ open }: AppDrawerProps) {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.only('xs'))
   return (
     <Drawer
-      variant="persistent"
+      variant={isMobile ? 'temporary' : 'persistent'}
       open={open}
       sx={{
         width: DRAWER_WIDTH,

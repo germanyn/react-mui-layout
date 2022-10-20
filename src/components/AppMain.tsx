@@ -1,4 +1,4 @@
-import { Box, styled, Toolbar, useTheme } from "@mui/material";
+import { Box, styled, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import { DRAWER_WIDTH } from "../constants";
 
 export interface AppMainProps {
@@ -8,6 +8,7 @@ export interface AppMainProps {
 
 export function AppMain({ children, open }: AppMainProps) {
   const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.only('xs'))
   return (
     <Box component='main' sx={{
       flexGrow: 1,
@@ -16,7 +17,7 @@ export function AppMain({ children, open }: AppMainProps) {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      marginLeft: `-${DRAWER_WIDTH}px`,
+      ...(!isMobile && { marginLeft: `-${DRAWER_WIDTH}px` }),
       ...(open && {
         transition: theme.transitions.create('margin', {
           easing: theme.transitions.easing.easeOut,
