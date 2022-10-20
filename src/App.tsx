@@ -9,13 +9,9 @@ export function App() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppToolbar
-        onMenuClick={() => setOpen(!open)}
-      />
-      <AppDrawer
-        open={open}
-      />
-      <AppMain>
+      <AppToolbar onMenuClick={() => setOpen(!open)}/>
+      <AppDrawer open={open}/>
+      <AppMain open={open}>
         <Typography
           component="h2"
           variant="h4"

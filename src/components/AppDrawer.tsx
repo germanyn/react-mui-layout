@@ -1,7 +1,6 @@
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
-
-const DRAWER_WIDTH = 240;
+import { DRAWER_WIDTH } from "../constants";
 
 export interface AppDrawerProps {
   open?: boolean
