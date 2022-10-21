@@ -1,4 +1,4 @@
-import { Box, styled, Toolbar, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import { DRAWER_WIDTH } from "../constants";
 
 export interface AppMainProps {

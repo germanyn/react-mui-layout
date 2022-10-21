@@ -22,7 +22,6 @@ export type ListItemButtonLinkProps = ListItemButtonBaseProps & LinkProps & {
 export function ListItemButtonLink({ end, ...props}: ListItemButtonLinkProps) {
   const resolvedPath = useResolvedPath(props.to)
   const match = useMatch({ path: resolvedPath.pathname, end })
-  const theme = useTheme()
   const selected = !!match
 
   return (
