@@ -1,8 +1,15 @@
 import HomeIcon from '@mui/icons-material/Home';
 import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded';
-import { Box, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from "@mui/material";
+import { To } from "react-router-dom";
 import { DRAWER_WIDTH } from "../constants";
+import { ListItemButtonLink } from './ListItemButtonLink';
+
+export interface DrawerItem {
+  to: To
+  text: string
+  icon: React.ReactNode
+}
 
 export interface AppDrawerProps {
   open?: boolean
@@ -12,6 +19,18 @@ export interface AppDrawerProps {
 export function AppDrawer({ open, onClose }: AppDrawerProps) {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.only('xs'))
+  const itens: DrawerItem[] = [
+    {
+      text: 'Home',
+      to: '/',
+      icon: <HomeIcon />,
+    },
+    {
+      text: 'About',
+      to: '/about',
+      icon: <QuestionMarkRoundedIcon />,
+    },
+  ]
   return (
     <Drawer
       variant={isMobile ? 'temporary' : 'persistent'}
@@ -26,22 +45,16 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
         <List onClick={onClose}>
-          <ListItemButton component={NavLink} to='/'>
-            <ListItemButton>
-              <ListItemIcon>
-                <HomeIcon/>
-              </ListItemIcon>
-              <ListItemText primary='Home' />
-            </ListItemButton>
-          </ListItemButton>
-          <ListItemButton component={NavLink} to='/about'>
-            <ListItemButton>
-              <ListItemIcon>
-                <QuestionMarkRoundedIcon/>
-              </ListItemIcon>
-              <ListItemText primary='About' />
-            </ListItemButton>
-          </ListItemButton>
+          {itens.map(item => (
+            <ListItem key={item.text} disablePadding>
+              <ListItemButtonLink to={item.to}>
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItemButtonLink>
+            </ListItem>
+          ))}
         </List>
       </Box>
     </Drawer>
