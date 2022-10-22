@@ -44,7 +44,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
     >
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
-        <List onClick={onClose}>
+        <List onClick={isMobile ? onClose : undefined}>
           {itens.map(item => (
             <ListItem key={item.text} disablePadding>
               <ListItemButtonLink to={item.to}>
