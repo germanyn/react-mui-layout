@@ -1,6 +1,6 @@
-import HomeIcon from '@mui/icons-material/Home'
-import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded'
-import LogoutIcon from '@mui/icons-material/Logout'
+import HomeIcon from 'mdi-material-ui/Home'
+import HelpIcon from 'mdi-material-ui/HelpCircleOutline'
+import LogoutIcon from 'mdi-material-ui/Logout'
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from '@mui/material'
 import { To } from 'react-router-dom'
 import { DRAWER_WIDTH } from '../constants'
@@ -31,7 +31,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
 		{
 			text: 'About',
 			to: '/about',
-			icon: <QuestionMarkRoundedIcon />,
+			icon: <HelpIcon />,
 		},
 	]
 	return (

@@ -1,5 +1,5 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
+import MenuIcon from 'mdi-material-ui/Menu'
 
 export interface AppToolbarProps {
   onMenuClick?: () => void
