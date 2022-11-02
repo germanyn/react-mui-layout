@@ -1,24 +1,27 @@
 import HomeIcon from '@mui/icons-material/Home'
 import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded'
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from '@mui/material'
+import LogoutIcon from '@mui/icons-material/Logout'
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme } from '@mui/material'
 import { To } from 'react-router-dom'
 import { DRAWER_WIDTH } from '../constants'
 import { ListItemButtonLink } from './ListItemButtonLink'
+import { useAuth } from '../hooks/AuthContext'
 
 export interface DrawerItem {
-  to: To
-  text: string
-  icon: React.ReactNode
+	to: To
+	text: string
+	icon: React.ReactNode
 }
 
 export interface AppDrawerProps {
-  open?: boolean
-  onClose?: () => void
+	open?: boolean
+	onClose?: () => void
 }
 
 export function AppDrawer({ open, onClose }: AppDrawerProps) {
 	const theme = useTheme()
 	const isMobile = useMediaQuery(theme.breakpoints.only('xs'))
+	const { logOut } = useAuth()
 	const itens: DrawerItem[] = [
 		{
 			text: 'Home',
@@ -55,6 +58,19 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
 							</ListItemButtonLink>
 						</ListItem>
 					))}
+				</List>
+			</Box>
+			<Box mt='auto'>
+				<Divider />
+				<List onClick={isMobile ? onClose : undefined}>
+					<ListItem disablePadding>
+						<ListItemButton onClick={() => logOut()}>
+							<ListItemIcon>
+								<LogoutIcon/>
+							</ListItemIcon>
+							<ListItemText primary='Sign out' />
+						</ListItemButton>
+					</ListItem>
 				</List>
 			</Box>
 		</Drawer>
