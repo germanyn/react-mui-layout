@@ -1,11 +1,17 @@
 import type { FirebaseApp } from 'firebase/app'
-import { AuthCredential, createUserWithEmailAndPassword, initializeAuth, signInWithEmailAndPassword, User } from 'firebase/auth'
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, User } from 'firebase/auth'
 import { useMemo, useState } from 'react'
 import { AuthContext, AuthContextType, BaseCredentials, useAuth } from './AuthContext'
 
 export interface FirebaseAuthProvider {
 	children: JSX.Element
 	app: FirebaseApp
+}
+
+export type ContextType = AuthContextType<User> & {
+	app: FirebaseApp
+	auth: Auth
+	handleUserChange: (user: User | null) => void
 }
 
 export function FirebaseAuthProvider({
@@ -25,7 +31,7 @@ export function FirebaseAuthProvider({
 		setUser(user)
 	}
 
-	const auth = useMemo(() => initializeAuth(app), [ app ])
+	const auth = useMemo(() => getAuth(), [ app ])
 
 	async function logIn(credentials: BaseCredentials) {
 		const result = await signInWithEmailAndPassword(
@@ -50,15 +56,18 @@ export function FirebaseAuthProvider({
 		handleUserChange(result.user)
 	}
 
-	const value = useMemo<AuthContextType<User>>(() => {
+	const value = useMemo<ContextType>(() => {
 		return {
 			user,
 			signUp,
 			logIn,
 			logOut,
 			isLoggedIn: !!user,
+			app,
+			auth,
+			handleUserChange,
 		}
-	}, [user])
+	}, [user, app])
 
 	return (
 		<AuthContext.Provider value={value}>
@@ -68,5 +77,5 @@ export function FirebaseAuthProvider({
 }
 
 export function useFirebaseAuth() {
-	return useAuth<User, AuthCredential>()
+	return useAuth<ContextType>()
 }

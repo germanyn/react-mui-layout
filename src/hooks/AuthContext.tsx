@@ -19,6 +19,6 @@ export function createAuthContext<UserType = unknown, CredentialsType = unknown>
 
 export const AuthContext = createAuthContext<any, BaseCredentials>()
 
-export const useAuth = <UserType, CredentialsType>() => {
-	return useContext(AuthContext) as AuthContextType<UserType, CredentialsType>
+export const useAuth = <ContextType = AuthContextType>() => {
+	return useContext(AuthContext) as ContextType 
 }
