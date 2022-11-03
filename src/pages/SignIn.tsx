@@ -8,7 +8,7 @@ export function SignIn() {
 	const { logIn } = useAuth()
 	const navigate = useNavigate()
 	const [loading, setLoading] = useState(false)
-	const [credentials, setCredentiasl] = useState({
+	const [credentials, setCredentials] = useState({
 		username: '',
 		password: '',
 	})
@@ -47,7 +47,7 @@ export function SignIn() {
 						label='E-mail'
 						fullWidth
 						value={credentials.username}
-						onChange={event => setCredentiasl({
+						onChange={event => setCredentials({
 							...credentials,
 							username: event.target.value,
 						})}
@@ -58,7 +58,7 @@ export function SignIn() {
 						fullWidth
 						type='password'
 						value={credentials.password}
-						onChange={event => setCredentiasl({
+						onChange={event => setCredentials({
 							...credentials,
 							password: event.target.value,
 						})}
